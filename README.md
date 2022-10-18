@@ -2,9 +2,14 @@
 
 For this challenge we're looking for an infrastructure as code (IaC) solution on Amazon Web Services (AWS) which achieves the following:
 
-- [ ] Configures Org level SSO.
+- [ ] Configures Org level SSO. 
+	- [ ] Create an Admin role. 
+	- [ ] Create a Database Analyst role. 
 - [ ] Configures a Client VPN that leverages the org level SSO for managing access to the infrastructure.
-- [ ] Configures AWS RDS Postgres 14+ instance that leverages IAM for access control to the database. 
+- [ ] Configures AWS RDS Postgres 14+ instance that leverages IAM for access control to the database.
+	- [ ] Configure a read replica of the Postgres instance.
+	- [ ] Grant the Database Analyst access to the read replica, but not the primary.
+- [ ] Configure GitHub Actions to validate the configuration. 
 
 ## Submission
 
