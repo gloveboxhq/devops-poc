@@ -12,3 +12,11 @@ output "admin_policy" {
 output "rdspassword" {
   value = random_password.rds-password
 }
+
+output "rdsrootuser" {
+  value = random_pet.rds-root-user
+}
+
+output "random_integer" {
+  value = random_integer.secret-id
+}
