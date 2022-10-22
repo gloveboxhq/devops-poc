@@ -28,6 +28,7 @@ resource "aws_db_instance" "challengedb_read" {
   #engine                 = "postgres"
   #engine_version         = "14.1"
   skip_final_snapshot    = true
+  storage_encrypted = true 
   vpc_security_group_ids = [var.rds_sg]
 
 # disable backups to create DB faster
