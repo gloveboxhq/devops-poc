@@ -2,7 +2,7 @@
 
 For this challenge we're looking for an infrastructure as code (IaC) solution on Amazon Web Services (AWS) which achieves the following:
 
-- [] Configures Org level SSO. 
+- [ ] Configures Org level SSO. 
 	- [X] Create an Admin role. 
 	- [X] Create a Database Analyst role. 
 - [ ] Configures a Client VPN that leverages the org level SSO for managing access to the infrastructure.
