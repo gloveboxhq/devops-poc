@@ -10,3 +10,7 @@ resource "aws_secretsmanager_secret_version" "rds-password" {
     secret_id = aws_secretsmanager_secret.rds-secret.id
     secret_string = var.rds_supersecretpassword
 }
+
+data "aws_secretsmanager_secret_version" "rds-password" {
+    secret_id = aws_secretsmanager_secret.rds-secret.id
+}
