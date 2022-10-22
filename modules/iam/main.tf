@@ -25,7 +25,8 @@ resource "aws_iam_role" "rds_analyst_role" {
 
 resource "aws_iam_role_policy_attachment" "rds_analyst_attachment" {
     role = aws_iam_role.rds_analyst_role.name
-    policy_arn = var.analyst_policy
+    #policy_arn = var.analyst_policy
+    policy_arn = aws_iam_policy.readerdbpolicy.arn
 }
 
 /* 
