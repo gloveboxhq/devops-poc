@@ -9,3 +9,6 @@ output "rds_analyst_policy" {
 output "admin_policy" {
     value = data.aws_iam_policy.administrator_access
 }
+output "rdspassword" {
+  value = random_password.rds-password
+}
