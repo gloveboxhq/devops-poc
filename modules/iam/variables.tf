@@ -5,3 +5,7 @@ variable "analyst_policy" {
 variable "admin_policy" {
     type = string
 }
+
+variable "read-replica-arn" {
+    type = string
+}

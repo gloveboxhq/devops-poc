@@ -57,3 +57,41 @@ resource "aws_iam_role_policy_attachment" "admin_attachment" {
     role = aws_iam_role.admin_role.name
     policy_arn = var.admin_policy
 }
+
+resource "aws_iam_policy" "readerdbpolicy" {
+  name = "read_replica_policy"
+  description = "policy to limit users to RDS read replica"
+
+   policy = <<EOT
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+            "Action": [
+                "rds:Describe*",
+                "rds:ListTagsForResource",
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcAttribute",
+                "ec2:DescribeVpcs"
+            ],
+      "Effect": "Allow",
+      "Resource": "${var.read-replica-arn}"
+    },
+    {
+            "Action": [
+                "cloudwatch:GetMetricStatistics",
+                "logs:DescribeLogStreams",
+                "logs:GetLogEvents"
+            ],
+      "Effect": "Allow",
+      "Resource": "${var.read-replica-arn}"
+    }
+  ]
+
+}
+EOT
+}
