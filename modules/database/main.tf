@@ -30,7 +30,7 @@ resource "aws_db_instance" "challengedb_read" {
   skip_final_snapshot    = true
   storage_encrypted = true 
   vpc_security_group_ids = [var.rds_sg]
-
+  iam_database_authentication_enabled = true
 # disable backups to create DB faster
   backup_retention_period = 0
 }
