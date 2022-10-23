@@ -1,15 +1,15 @@
 variable "rds_supersecretpassword" {
-    type = string
+  type = string
 }
 
 variable "secret-id" {
-    type = string
+  type = string
 }
 
 variable "directory_supersecretpassword" {
-    type = string
+  type = string
 }
 
 variable "directory_domain" {
-    type = string
+  type = string
 }

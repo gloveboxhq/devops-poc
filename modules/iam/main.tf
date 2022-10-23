@@ -16,7 +16,7 @@ resource "aws_iam_role" "rds_analyst_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          "AWS": "arn:aws:iam::959867141488:user/MatthewDavis"
+          "AWS" : "arn:aws:iam::959867141488:user/MatthewDavis"
         }
       },
     ]
@@ -24,9 +24,9 @@ resource "aws_iam_role" "rds_analyst_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "rds_analyst_attachment" {
-    role = aws_iam_role.rds_analyst_role.name
-    #policy_arn = var.analyst_policy
-    policy_arn = aws_iam_policy.readerdbpolicy.arn
+  role = aws_iam_role.rds_analyst_role.name
+  #policy_arn = var.analyst_policy
+  policy_arn = aws_iam_policy.readerdbpolicy.arn
 }
 
 /* 
@@ -47,7 +47,7 @@ resource "aws_iam_role" "admin_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          "AWS": "arn:aws:iam::959867141488:user/MatthewDavis"
+          "AWS" : "arn:aws:iam::959867141488:user/MatthewDavis"
         }
       },
     ]
@@ -55,15 +55,15 @@ resource "aws_iam_role" "admin_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "admin_attachment" {
-    role = aws_iam_role.admin_role.name
-    policy_arn = var.admin_policy
+  role       = aws_iam_role.admin_role.name
+  policy_arn = var.admin_policy
 }
 
 resource "aws_iam_policy" "readerdbpolicy" {
-  name = "read_replica_policy"
+  name        = "read_replica_policy"
   description = "policy to limit users to RDS read replica"
 
-   policy = <<EOT
+  policy = <<EOT
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -106,7 +106,7 @@ resource "aws_directory_service_directory" "bar" {
   size     = "Small"
 
   vpc_settings {
-    vpc_id     = var.vpc_id
+    vpc_id = var.vpc_id
     #subnet_ids = [aws_subnet.foo.id, aws_subnet.bar.id]
     subnet_ids = [var.subnet_ids[1], var.subnet_ids[2]]
   }

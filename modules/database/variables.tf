@@ -1,14 +1,14 @@
 variable "kms_key" {
-    type = string
+  type = string
 }
 variable "rds_sg" {
-    type = string
+  type = string
 }
 
 variable "rds-secret" {
-    type = string
+  type = string
 }
 
 variable "rds-root-user" {
-    type = string
+  type = string
 }
