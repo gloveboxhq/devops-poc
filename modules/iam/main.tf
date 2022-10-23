@@ -96,3 +96,18 @@ resource "aws_iam_policy" "readerdbpolicy" {
 }
 EOT
 }
+
+## this creates the simple directory service to aid the client vpn
+
+
+resource "aws_directory_service_directory" "bar" {
+  name     = var.directory-domain
+  password = var.directory-secret
+  size     = "Small"
+
+  vpc_settings {
+    vpc_id     = var.vpc_id
+    #subnet_ids = [aws_subnet.foo.id, aws_subnet.bar.id]
+    subnet_ids = [var.subnet_ids[1], var.subnet_ids[2]]
+  }
+}
