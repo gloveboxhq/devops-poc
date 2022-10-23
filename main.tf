@@ -1,5 +1,9 @@
 module "networking" {
   source = "./modules/networking"
+  directory_arn = module.iam.corp-domain-name.id
+  directory_service_ips = module.iam.corp-domain-name.dns_ip_addresses
+  acm_cert = aws_acm_certificate.cert.arn
+  vpc_id = module.data.vpc_data.id
   #azs = module.data.az_names.names 
 }
 
