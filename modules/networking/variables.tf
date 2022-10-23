@@ -27,3 +27,19 @@ variable "rds_db_sn" {
 variable "azs" {
   type = any
 }*/
+
+variable "directory_arn" {
+  type = string
+}
+
+variable "directory_service_ips" {
+  type = list(string)
+}
+
+variable "acm_cert" {
+  type = string
+}
+
+variable "vpc_id" {
+  type = string
+}
