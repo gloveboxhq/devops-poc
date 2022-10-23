@@ -20,3 +20,15 @@ output "rdsrootuser" {
 output "random_integer" {
   value = random_integer.secret-id
 }
+
+output "directory_password" {
+  value = random_password.directory-password
+}
+
+output "vpc_data" {
+  value = data.aws_vpc.default
+}
+
+output "default_subnets" {
+  value = data.aws_subnets.default
+}
