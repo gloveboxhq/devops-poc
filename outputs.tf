@@ -10,3 +10,12 @@ output "vpc_info" {
 output "subnets" {
     value = module.data.default_subnets.ids
 }
+
+output "ds_ips" {
+    value = module.iam.corp-domain-name.dns_ip_addresses
+}
+
+output "certificate" {
+    value = aws_acm_certificate.cert
+    sensitive = true
+}
