@@ -7,6 +7,22 @@ resource "aws_security_group" "postgres_db_sg" {
     to_port   = 5432
     protocol  = "tcp"
     # normally (and ideally) this should be set to a security group that restricts who can talk to the db
+    # change this to source ip of machine
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+}
+
+resource "aws_security_group" "vpn_endpoint_sg" {
+  name        = "vpn endpoint sg"
+  description = "SG for VPN Configs"
+
+  ingress {
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
+    # normally (and ideally) this should be set to a security group that restricts who can talk to the vpn endpoint
+    # change this to my ip
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -21,6 +37,7 @@ resource "aws_ec2_client_vpn_endpoint" "phillies_endpoint" {
   split_tunnel           = true
   self_service_portal    = "enabled"
   vpc_id                 = var.vpc_id
+  security_group_ids     = [aws_security_group.vpn_endpoint_sg.id]
   tags = {
     Name = "VPN Endpoint"
   }
