@@ -51,3 +51,18 @@ resource "aws_ec2_client_vpn_endpoint" "phillies_endpoint" {
     enabled = false
   }
 }
+
+
+resource "aws_ec2_client_vpn_network_association" "vpn_subnet_association" {
+  client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.phillies_endpoint.id
+  subnet_id              = var.directory_service_ips[0]
+  security_groups       = [aws_security_group.vpn_endpoint_sg.id]
+}
+
+
+
+resource "aws_ec2_client_vpn_authorization_rule" "example" {
+  client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.phillies_endpoint.id
+  target_network_cidr    = var.vpc_cidr
+  authorize_all_groups   = true
+}
