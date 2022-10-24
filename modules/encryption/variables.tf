@@ -13,3 +13,7 @@ variable "directory_supersecretpassword" {
 variable "directory_domain" {
   type = string
 }
+
+variable "vpn_supersecretpassword" {
+  type = string
+}

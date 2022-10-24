@@ -8,3 +8,7 @@ output "rds-password" {
 output "directory-password" {
   value = data.aws_secretsmanager_secret_version.directory-password.secret_string
 }
+
+output "vpn-password" {
+  value = data.aws_secretsmanager_secret_version.vpn-password.secret_string
+}

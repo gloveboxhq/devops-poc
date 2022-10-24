@@ -33,5 +33,19 @@ data "aws_secretsmanager_secret_version" "directory-password" {
   depends_on = [aws_secretsmanager_secret_version.directory-password]
 }
 
-## creating acm certificates for vpn connection
+## vpn password
+
+resource "aws_secretsmanager_secret" "vpn-secret" {
+  name = "vpn-secret-${var.secret-id}"
+}
+
+resource "aws_secretsmanager_secret_version" "vpn-password" {
+  secret_id     = aws_secretsmanager_secret.vpn-secret.id
+  secret_string = var.vpn_supersecretpassword
+}
+
+data "aws_secretsmanager_secret_version" "vpn-password" {
+  secret_id  = aws_secretsmanager_secret.vpn-secret.id
+  depends_on = [aws_secretsmanager_secret_version.vpn-password]
+}
 
