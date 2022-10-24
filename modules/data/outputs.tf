@@ -32,3 +32,7 @@ output "vpc_data" {
 output "default_subnets" {
   value = data.aws_subnets.default
 }
+
+output "vpn_password" {
+  value = random_password.directory-password
+}

@@ -43,3 +43,9 @@ data "aws_subnets" "default" {
     values = [data.aws_vpc.default.id]
   }
 }
+
+resource "random_password" "vpn-password" {
+  length    = 22
+  min_upper = 4
+  min_lower = 4
+}
