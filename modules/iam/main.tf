@@ -97,6 +97,37 @@ resource "aws_iam_policy" "readerdbpolicy" {
 EOT
 }
 
+resource "aws_iam_policy" "vpn_policy" {
+  name        = "vpn_policy"
+  description = "vpn policy"
+
+  policy = <<EOT
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeClientVpnRoutes",
+                "ec2:DescribeClientVpnAuthorizationRules",
+                "ec2:DescribeClientVpnConnections",
+                "ec2:DescribeClientVpnTargetNetworks",
+                "ec2:DescribeClientVpnEndpoints"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+EOT
+}
+
+resource "aws_iam_role_policy_attachment" "vpn_rds_attachment" {
+  role = aws_iam_role.rds_analyst_role.name
+  #policy_arn = var.analyst_policy
+  policy_arn = aws_iam_policy.vpn_policy.arn
+}
+
+
 ## this creates the simple directory service to aid the client vpn
 
 
