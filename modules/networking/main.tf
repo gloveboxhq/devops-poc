@@ -29,7 +29,7 @@ resource "aws_security_group" "vpn_endpoint_sg" {
 }
 
 resource "aws_acm_certificate" "cert" {
-  domain_name = var.domain_name
+  domain_name       = var.domain_name
   validation_method = "EMAIL"
 }
 
@@ -60,13 +60,13 @@ resource "aws_ec2_client_vpn_endpoint" "phillies_endpoint" {
 resource "aws_ec2_client_vpn_network_association" "vpn_subnet_association" {
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.phillies_endpoint.id
   subnet_id              = var.subnet_ids[1]
-  security_groups       = [aws_security_group.vpn_endpoint_sg.id]
+  security_groups        = [aws_security_group.vpn_endpoint_sg.id]
 }
 
 
 
 resource "aws_ec2_client_vpn_authorization_rule" "example" {
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.phillies_endpoint.id
-  target_network_cidr    = "${var.vpc_cidr}"
+  target_network_cidr    = var.vpc_cidr
   authorize_all_groups   = true
 }

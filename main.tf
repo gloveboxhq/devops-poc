@@ -3,11 +3,11 @@ module "networking" {
   directory_arn         = module.iam.corp-domain-name.id
   directory_service_ips = module.iam.corp-domain-name.dns_ip_addresses
   #acm_cert              = aws_acm_certificate.cert.arn
-  vpc_id                = module.data.vpc_data.id
-  vpc_cidr              = module.data.vpc_data.cidr_block
-  subnet_ids            = module.data.default_subnets.ids
-  domain_name           = module.iam.corp-domain-name.name
-  vpn_password          = module.encryption.vpn-password
+  vpc_id       = module.data.vpc_data.id
+  vpc_cidr     = module.data.vpc_data.cidr_block
+  subnet_ids   = module.data.default_subnets.ids
+  domain_name  = module.iam.corp-domain-name.name
+  vpn_password = module.encryption.vpn-password
   #azs = module.data.az_names.names 
 }
 
@@ -23,7 +23,7 @@ module "iam" {
   directory-secret = module.encryption.directory-password
   vpc_id           = module.data.vpc_data.id
   subnet_ids       = module.data.default_subnets.ids
-  
+
 }
 
 

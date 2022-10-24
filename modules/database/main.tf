@@ -13,7 +13,7 @@ resource "aws_db_instance" "default" {
   storage_encrypted                   = true
   vpc_security_group_ids              = [var.rds_sg]
   auto_minor_version_upgrade          = false # this will stop the rds instance from automatically upgrading 
-  allow_major_version_upgrade          = false
+  allow_major_version_upgrade         = false
 
   # Backups are required in order to create a replica
   maintenance_window      = "Mon:00:00-Mon:03:00"
@@ -22,10 +22,10 @@ resource "aws_db_instance" "default" {
 }
 
 resource "aws_db_instance" "challengedb_read" {
-  identifier          = "challengedbreader"
-  replicate_source_db = aws_db_instance.default.identifier ## refer to the master instance
-  instance_class    = "db.t3.micro"
-  allocated_storage = 10
+  identifier                          = "challengedbreader"
+  replicate_source_db                 = aws_db_instance.default.identifier ## refer to the master instance
+  instance_class                      = "db.t3.micro"
+  allocated_storage                   = 10
   skip_final_snapshot                 = true
   storage_encrypted                   = true
   vpc_security_group_ids              = [var.rds_sg]
