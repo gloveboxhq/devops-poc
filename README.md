@@ -5,7 +5,7 @@ For this challenge we're looking for an infrastructure as code (IaC) solution on
 - [X] Configures Org level SSO. 
 	- [X] Create an Admin role. 
 	- [X] Create a Database Analyst role. 
-- [ ] Configures a Client VPN that leverages the org level SSO for managing access to the infrastructure.
+- [X] Configures a Client VPN that leverages the org level SSO for managing access to the infrastructure.
 - [X] Configures AWS RDS Postgres 14+ instance that leverages IAM for access control to the database.
 	- [X] Configure a read replica of the Postgres instance.
 	- [X] Grant the Database Analyst access to the read replica, but not the primary.
