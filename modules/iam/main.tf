@@ -4,7 +4,7 @@ managed RDS Read Only Policy
 */
 
 resource "aws_iam_role" "rds_analyst_role" {
-  name = "rds-analyst-role"
+  name = "rdsanalyst"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -16,7 +16,7 @@ resource "aws_iam_role" "rds_analyst_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          "AWS" : "arn:aws:iam::959867141488:user/MatthewDavis"
+          "AWS" : "${var.user_arn}"
         }
       },
     ]
@@ -46,7 +46,7 @@ resource "aws_iam_role" "admin_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          "AWS" : "arn:aws:iam::959867141488:user/MatthewDavis"
+          "AWS" : "${var.user_arn}"
         }
       },
     ]
@@ -112,7 +112,7 @@ resource "aws_iam_policy" "rds_iam_auth" {
         "rds-db:connect"
       ],
       "Resource": [
-        "arn:aws:rds-db:us-east-1:"${var.account_id}":dbuser:rdsanalyst/iamuser"
+        "arn:aws:rds-db:us-east-1:"${var.account_id}":dbuser:"${var.rds_id}/rdsanalyst"
       ]
     }
   ]

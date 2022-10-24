@@ -31,3 +31,11 @@ variable "subnet_ids" {
 variable "account_id" {
   type = string
 }
+
+variable "rds_id" {
+  type = string
+}
+
+variable "user_arn" {
+  type = string
+}

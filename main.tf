@@ -22,6 +22,8 @@ module "iam" {
   vpc_id           = module.data.vpc_data.id
   subnet_ids       = module.data.default_subnets.ids
   account_id       = module.data.account_id
+  user_arn         = module.data.caller_arn
+  rds_id           = module.database.rds_read_replica.resource_id
 
 }
 
