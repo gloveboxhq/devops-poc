@@ -5,7 +5,7 @@ resource "aws_db_instance" "default" {
   engine                              = "postgres"
   engine_version                      = "14.1"
   instance_class                      = "db.t3.micro"
-  username                            = var.rds-root-user
+  username                            = "rdsanalyst"
   password                            = var.rds-secret
   skip_final_snapshot                 = true
   iam_database_authentication_enabled = true

@@ -2,13 +2,11 @@ module "networking" {
   source                = "./modules/networking"
   directory_arn         = module.iam.corp-domain-name.id
   directory_service_ips = module.iam.corp-domain-name.dns_ip_addresses
-  #acm_cert              = aws_acm_certificate.cert.arn
   vpc_id       = module.data.vpc_data.id
   vpc_cidr     = module.data.vpc_data.cidr_block
   subnet_ids   = module.data.default_subnets.ids
   domain_name  = module.iam.corp-domain-name.name
   vpn_password = module.encryption.vpn-password
-  #azs = module.data.az_names.names 
 }
 
 module "data" {
@@ -45,10 +43,3 @@ module "encryption" {
   directory_domain              = var.directory-domain-name
   vpn_supersecretpassword       = module.data.vpn_password.result
 }
-
-/*# for importing the created acm certificate
-resource "aws_acm_certificate" "cert" {
-  private_key      = "unknown"
-  certificate_body = "unknown"
-
-}*/
