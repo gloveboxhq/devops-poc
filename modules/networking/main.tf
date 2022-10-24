@@ -28,10 +28,14 @@ resource "aws_security_group" "vpn_endpoint_sg" {
 
 }
 
+resource "aws_acm_certificate" "cert" {
+  domain_name = var.domain_name
+  validation_method = "EMAIL"
+}
 
 resource "aws_ec2_client_vpn_endpoint" "phillies_endpoint" {
   description            = "terraform-clientvpn-example"
-  server_certificate_arn = var.acm_cert
+  server_certificate_arn = aws_acm_certificate.cert.arn
   client_cidr_block      = "192.168.12.0/22"
   dns_servers            = [var.directory_service_ips[0], var.directory_service_ips[1]]
   split_tunnel           = true
