@@ -24,7 +24,7 @@ resource "aws_iam_role" "rds_analyst_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "rds_analyst_attachment" {
-  role = aws_iam_role.rds_analyst_role.name
+  role       = aws_iam_role.rds_analyst_role.name
   policy_arn = aws_iam_policy.readerdbpolicy.arn
 }
 
@@ -121,7 +121,7 @@ EOT
 }
 
 resource "aws_iam_role_policy_attachment" "rds_iam_auth" {
-  role = aws_iam_role.rds_analyst_role.name
+  role       = aws_iam_role.rds_analyst_role.name
   policy_arn = aws_iam_policy.rds_iam_auth.arn
 }
 
@@ -165,7 +165,7 @@ resource "aws_directory_service_directory" "bar" {
   size     = "Small"
 
   vpc_settings {
-    vpc_id = var.vpc_id
+    vpc_id     = var.vpc_id
     subnet_ids = [var.subnet_ids[1], var.subnet_ids[2]]
   }
 }
