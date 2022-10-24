@@ -1,10 +1,13 @@
 terraform {
-  backend "s3" {
-    bucket         = "fuzzy-couscous-backend-284739"
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "fuzzy_couscous_table"
+terraform {
+  cloud {
+    organization = "friends_of_fate_903"
+
+    workspaces {
+      name = "challenge_workspace"
+    }
   }
+}
   required_providers {
     aws = {
       source  = "hashicorp/aws"
