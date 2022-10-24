@@ -5,6 +5,7 @@ module "networking" {
   acm_cert              = aws_acm_certificate.cert.arn
   vpc_id                = module.data.vpc_data.id
   vpc_cidr              = module.data.vpc_data.cidr_block
+  subnet_ids            = module.data.default_subnets.ids
   #azs = module.data.az_names.names 
 }
 
