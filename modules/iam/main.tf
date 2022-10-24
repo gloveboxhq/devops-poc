@@ -112,7 +112,7 @@ resource "aws_iam_policy" "rds_iam_auth" {
         "rds-db:connect"
       ],
       "Resource": [
-        "arn:aws:rds-db:us-east-1:959867141488:dbuser:rdsanalyst/iamuser"
+        "arn:aws:rds-db:us-east-1:"${var.account_id}":dbuser:rdsanalyst/iamuser"
       ]
     }
   ]

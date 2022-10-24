@@ -36,3 +36,7 @@ output "default_subnets" {
 output "vpn_password" {
   value = random_password.directory-password
 }
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}

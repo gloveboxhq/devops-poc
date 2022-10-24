@@ -21,6 +21,7 @@ module "iam" {
   directory-secret = module.encryption.directory-password
   vpc_id           = module.data.vpc_data.id
   subnet_ids       = module.data.default_subnets.ids
+  account_id       = module.data.account_id
 
 }
 

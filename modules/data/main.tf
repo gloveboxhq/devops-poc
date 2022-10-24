@@ -49,3 +49,6 @@ resource "random_password" "vpn-password" {
   min_upper = 4
   min_lower = 4
 }
+
+data "aws_caller_identity" "current" {}
+
