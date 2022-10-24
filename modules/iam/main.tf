@@ -25,7 +25,6 @@ resource "aws_iam_role" "rds_analyst_role" {
 
 resource "aws_iam_role_policy_attachment" "rds_analyst_attachment" {
   role = aws_iam_role.rds_analyst_role.name
-  #policy_arn = var.analyst_policy
   policy_arn = aws_iam_policy.readerdbpolicy.arn
 }
 
@@ -97,6 +96,35 @@ resource "aws_iam_policy" "readerdbpolicy" {
 EOT
 }
 
+
+
+resource "aws_iam_policy" "rds_iam_auth" {
+  name        = "rds_iam_auth"
+  description = "rds_iam_auth"
+
+  policy = <<EOT
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "rds-db:connect"
+      ],
+      "Resource": [
+        "arn:aws:rds-db:us-east-1:959867141488:dbuser:rdsanalyst/iamuser"
+      ]
+    }
+  ]
+}
+EOT
+}
+
+resource "aws_iam_role_policy_attachment" "rds_iam_auth" {
+  role = aws_iam_role.rds_analyst_role.name
+  policy_arn = aws_iam_policy.rds_iam_auth.arn
+}
+
 resource "aws_iam_policy" "vpn_policy" {
   name        = "vpn_policy"
   description = "vpn policy"
@@ -138,7 +166,6 @@ resource "aws_directory_service_directory" "bar" {
 
   vpc_settings {
     vpc_id = var.vpc_id
-    #subnet_ids = [aws_subnet.foo.id, aws_subnet.bar.id]
     subnet_ids = [var.subnet_ids[1], var.subnet_ids[2]]
   }
 }
