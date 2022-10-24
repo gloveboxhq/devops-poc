@@ -1,4 +1,4 @@
-
+## requires terraform cloud login & aws access keys
 terraform {
   cloud {
     organization = "friends_of_fate_903"

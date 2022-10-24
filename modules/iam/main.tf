@@ -96,7 +96,8 @@ resource "aws_iam_policy" "readerdbpolicy" {
 EOT
 }
 
-
+## the next two resources create and attach the rds iam auth policy to 
+## the rdsanalyst role
 
 resource "aws_iam_policy" "rds_iam_auth" {
   name        = "rds_iam_auth"
@@ -124,6 +125,8 @@ resource "aws_iam_role_policy_attachment" "rds_iam_auth" {
   role       = aws_iam_role.rds_analyst_role.name
   policy_arn = aws_iam_policy.rds_iam_auth.arn
 }
+
+## creates and attaches the vpn policy for the rdsanalyst role
 
 resource "aws_iam_policy" "vpn_policy" {
   name        = "vpn_policy"

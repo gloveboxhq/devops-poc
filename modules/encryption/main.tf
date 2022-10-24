@@ -33,7 +33,7 @@ data "aws_secretsmanager_secret_version" "directory-password" {
   depends_on = [aws_secretsmanager_secret_version.directory-password]
 }
 
-## vpn password
+## these resources store the vpn password in secrets manager
 
 resource "aws_secretsmanager_secret" "vpn-secret" {
   name = "vpn-secret-${var.secret-id}"

@@ -24,7 +24,6 @@ module "iam" {
   account_id       = module.data.account_id
   user_arn         = module.data.caller_arn
   rds_id           = module.database.rds_read_replica.resource_id
-
 }
 
 
@@ -41,8 +40,8 @@ module "database" {
 module "encryption" {
   source                        = "./modules/encryption"
   rds_supersecretpassword       = module.data.rdspassword.result
-  secret-id                     = module.data.random_integer.result
-  directory_supersecretpassword = module.data.directory_password.result
-  directory_domain              = var.directory-domain-name
   vpn_supersecretpassword       = module.data.vpn_password.result
+  directory_supersecretpassword = module.data.directory_password.result
+  secret-id                     = module.data.random_integer.result
+  directory_domain              = module.iam.corp-domain-name.name
 }

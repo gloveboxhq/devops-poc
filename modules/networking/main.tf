@@ -22,7 +22,7 @@ resource "aws_security_group" "vpn_endpoint_sg" {
     to_port   = 443
     protocol  = "tcp"
     # normally (and ideally) this should be set to a security group that restricts who can talk to the vpn endpoint
-    # change this to my ip
+    # change this to the source cidr; usually i like to have this be my local ip
     cidr_blocks = ["0.0.0.0/0"]
   }
 
