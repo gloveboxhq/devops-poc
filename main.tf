@@ -4,6 +4,7 @@ module "networking" {
   directory_service_ips = module.iam.corp-domain-name.dns_ip_addresses
   acm_cert              = aws_acm_certificate.cert.arn
   vpc_id                = module.data.vpc_data.id
+  vpc_cidr              = module.data.vpc_data.cidr_block
   #azs = module.data.az_names.names 
 }
 
@@ -19,6 +20,7 @@ module "iam" {
   directory-secret = module.encryption.directory-password
   vpc_id           = module.data.vpc_data.id
   subnet_ids       = module.data.default_subnets.ids
+  
 }
 
 
