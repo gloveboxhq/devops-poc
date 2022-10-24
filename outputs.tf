@@ -14,8 +14,3 @@ output "subnets" {
 output "ds_ips" {
   value = module.iam.corp-domain-name.dns_ip_addresses
 }
-
-output "certificate" {
-  value     = aws_acm_certificate.cert
-  sensitive = true
-}
