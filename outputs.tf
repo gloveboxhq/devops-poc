@@ -1,3 +1,7 @@
+
+# These outputs were mostly for validation purposes
+
+
 output "read-replica-arn" {
   value = module.database.rds_read_replica.arn
 }

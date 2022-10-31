@@ -10,7 +10,7 @@ data "aws_iam_policy" "administrator_access" {
   arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
-## creating passwords 
+## creating passwords for RDS, VPN, and directory service
 resource "random_password" "rds-password" {
   length    = 24
   special   = false
@@ -55,6 +55,8 @@ data "aws_subnets" "default" {
   }
 }
 
+# this data source uses the current identity of the provided AWS credentials
+# to generate the IAM policies. 
 
 data "aws_caller_identity" "current" {}
 

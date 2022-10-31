@@ -1,3 +1,8 @@
+/*
+This SG allows access to the RDS instance. Normally this would be limited to
+corporate controlled ip addresses
+*/
+
 resource "aws_security_group" "postgres_db_sg" {
   name        = "postgresql_sg"
   description = "Security Group for PostgreSQL DB"
@@ -28,11 +33,19 @@ resource "aws_security_group" "vpn_endpoint_sg" {
 
 }
 
+/* Note that this is not actually a valid certificate. This is a proof of concept
+that proves the ability to put the pieces together. I was unable to validate the
+certificate since i don't have access to the domain. 
+*/
+
 resource "aws_acm_certificate" "cert" {
   domain_name       = var.domain_name
   validation_method = "EMAIL"
 }
-
+/* 
+this resource creates the client vpn endpoint. Note that the client VPN cidr block
+should reflect the intended destination. 
+*/
 resource "aws_ec2_client_vpn_endpoint" "phillies_endpoint" {
   description            = "terraform-clientvpn-example"
   server_certificate_arn = aws_acm_certificate.cert.arn
@@ -56,6 +69,11 @@ resource "aws_ec2_client_vpn_endpoint" "phillies_endpoint" {
   }
 }
 
+
+/*
+These next two resources allow connection into the resources that the VPN provides
+access to. 
+*/
 
 resource "aws_ec2_client_vpn_network_association" "vpn_subnet_association" {
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.phillies_endpoint.id

@@ -1,8 +1,10 @@
+# this is the key used to encrypt the rds database
+
 resource "aws_kms_key" "rds_encryption_key" {
   description = "challenge rds db key"
 }
 
-## the next three resources store the generated password in Secrets manager
+## the next three resources store the generated rds password in Secrets manager
 resource "aws_secretsmanager_secret" "rds-secret" {
   name = "rds-secret-${var.secret-id}"
 }
