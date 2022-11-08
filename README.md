@@ -9,7 +9,7 @@ Targeting environments requires creating `dev`, `staging`, `prod` workspaces:
 
 `envs=(dev staging prod); for env in "${envs[@]}"; do $HOME/bin/terraform workspace new "$env"; done`
 
-Resources are defined as their own units of work. New pattern, still breaking it in, 
+Resources are defined as their own units of work. New pattern, still breaking it in,
 but the goal is self-contained resources to improve re-use. TF microservices, not monoliths ;)
 
 Leaning on the smart people at Cloudposse to keep an eye on Terraform patterns, smooth rough edges, 
@@ -19,9 +19,8 @@ patterns to work with it efficiently.
 YAML settings for devs to adjust quickly. YAML is a common "config language" for better or worse,
 keep it familiar. Every language can read/write it making it easy to work with in tooling.
 
-The Github Action runs against `develop` to keep the machine validating config,
-highlight new issues sooner than later. Run plan often to avoid blocking
-at the wrong time.
+The Github Action would run against `develop` to keep the machine validating config,
+run plan often to avoid blocking at the wrong time.
 
 ## Example usage
 
