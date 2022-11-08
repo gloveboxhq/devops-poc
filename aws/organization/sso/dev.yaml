@@ -1,0 +1,4 @@
+name: dev-rds-devops-poc
+namespace: dev
+stage: dev
+enabled: true

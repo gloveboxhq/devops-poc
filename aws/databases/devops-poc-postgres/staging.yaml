@@ -1,0 +1,22 @@
+admin: staging-rds-devops-poc-user
+cluster_family: aurora-postgresql14
+cluster_size: 1
+db_name: staging-devops-poc
+engine: aurora-postgresql
+instance_type: db.t3.medium
+name: staging-rds-devops-poc
+namespace: staging
+port: 5432
+region: us-west-2
+stage: staging
+availability_zones:
+    - us-west-2a
+    - us-west-2b
+    - us-west-2c
+deletion_protection: false
+autoscaling_enabled: false
+engine_mode: provisioned
+admin_password: admin_password
+enhanced_monitoring_role_enabled: true
+rds_monitoring_interval: 30
+intra_security_group_traffic_enabled: true

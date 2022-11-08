@@ -1,0 +1,4 @@
+name: prod-rds-devops-poc
+namespace: prod
+stage: prod
+enabled: true
