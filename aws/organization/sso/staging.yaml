@@ -1,0 +1,4 @@
+name: staging-rds-devops-poc
+namespace: staging
+stage: staging
+enabled: true

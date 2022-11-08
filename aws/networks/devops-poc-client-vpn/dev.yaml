@@ -1,0 +1,28 @@
+name: dev-vpn-devops-poc
+namespace: dev
+region: us-west-2
+stage: dev
+availability_zones:
+    - us-west-2a
+    - us-west-2b
+    - us-west-2c
+ca_common_name:     vpn.internal.cloudposse.com
+root_common_name:   vpn-client.internal.cloudposse.com
+server_common_name: vpn-server.internal.cloudposse.com
+additional_routes: []
+client_cidr_block: 10.1.0.0/22
+target_cidr_block: 10.0.0.0/16
+logging_stream_name: dev-vpn-devops-poc
+environment: uw2
+logging_enabled: false
+retention_in_days: 0
+organization_name: devops-poc
+associated_security_group_ids: []
+authorization_rules: []
+split_tunnel: true
+export_client_certificate: true
+parent_zone_name: testing.cloudposse.co
+validation_method: DNS
+ttl: 300
+process_domain_validation_options: true
+wait_for_certificate_issued: false

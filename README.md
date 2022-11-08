@@ -1,24 +1,45 @@
-# DevOps POC
+# glovebox/devops-poc
 
-For this challenge we're looking for an infrastructure as code (IaC) solution on Amazon Web Services (AWS) which achieves the following:
+Usual pattern is to put this somewhere like:
 
-- [ ] Configures Org level SSO. 
-	- [ ] Create an Admin role. 
-	- [ ] Create a Database Analyst role. 
-- [ ] Configures a Client VPN that leverages the org level SSO for managing access to the infrastructure.
-- [ ] Configures AWS RDS Postgres 14+ instance that leverages IAM for access control to the database.
-	- [ ] Configure a read replica of the Postgres instance.
-	- [ ] Grant the Database Analyst access to the read replica, but not the primary.
-- [ ] Configure GitHub Actions to validate the configuration. 
+<org>/<service or monorepo>/aws/
+<org>/<service or monorepo>/.github/workflows
 
-## Submission
+Targeting environments requires creating `dev`, `staging`, `prod` workspaces:
 
-To work on this project, please fork this repository, create a new branch and start working on your changes. Once you have code to submit send in a PR to this repository to initiate code review.
+`envs=(dev staging prod); for env in "${envs[@]}"; do $HOME/bin/terraform workspace new "$env"; done`
 
-## Tooling
+Resources are defined as their own units of work. New pattern, still breaking it in, 
+but the goal is self-contained resources to improve re-use. TF microservices, not monoliths ;)
 
-We're looking for you to leverage one of the following tools for this challenge:
+Leaning on the smart people at Cloudposse to keep an eye on Terraform patterns, smooth rough edges, 
+abstract away extra syntax. As with AWS, I can never know all of Terraform, and need help finding 
+patterns to work with it efficiently.
 
-* [HashiCorp Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
-* [Amazon CDK](https://aws.amazon.com/cdk/)
+YAML settings for devs to adjust quickly. YAML is a common "config language" for better or worse,
+keep it familiar. Every language can read/write it making it easy to work with in tooling.
 
+The Github Action runs against `develop` to keep the machine validating config,
+highlight new issues sooner than later. Run plan often to avoid blocking
+at the wrong time.
+
+## Example usage
+
+        terraform -chdir=$HOME/path/to/aws/databases/devops-poc-postgres init
+
+        terraform -chdir=$HOME/path/to/aws/databases/devops-poc-postgres plan
+
+        terraform -chdir=$HOME/path/to/aws/databases/devops-poc-postgres apply
+
+## Ideas to expand on this
+
+Setup S3 for Terraform state
+
+Script install and configuration of local VPN client
+
+Script to run each path, or some sequence of paths. Could be TF or simple shell command:
+
+`tf_dirs=(one two three); for dir in "${dirs[@]}"; do terraform chdir="$dir" plan; done`
+
+Scripts for local setup of AWS credentials, session login/management, get 
+account IDs, resources permissions allow access to.
